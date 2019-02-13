@@ -1,2 +1,2 @@
-# r-s-p-
+# r-s-p
 game
