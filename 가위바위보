@@ -1,0 +1,117 @@
+#include<stdlib.h> 
+#include<stdio.h>
+#include<time.h>
+#include<string.h>
+
+#define _CRT_SECURE_NO_WARNINGS 
+
+void swap(int *x, int *y, int *z)
+{
+	
+	int temp;
+	temp = *x;
+	*x = *y;
+	*y = *z;
+	*z = temp;
+}
+
+struct number {   // 구조체 정의
+    char n[5];        // 구조체 멤버 1
+    char m[5];              // 구조체 멤버 2
+    char p[5];    // 구조체 멤버 3
+};
+
+int main()
+{
+    char buffer[1000];    
+    FILE *fp = fopen("game.cpp", "r");   
+    fgets(buffer, sizeof(buffer), fp);  
+    printf("%s\n", buffer);    
+    fclose(fp); 
+    
+    struct number p1;   
+
+    strcpy(p1.n, "가위");
+    strcpy(p1.m, "바위");
+    strcpy(p1.p, "보");
+  
+	int i,a,b=0, c=0, d=0,x=1,y=2,z=3;
+	srand(time(NULL));
+	
+	swap(&x,&y,&z);//x=2 y=3 z=1
+	
+	for(i=1; i<6; i++){
+	scanf("%d", &a);
+	
+	if(rand()%3<z)//1==가위 2==바위 3==보 
+	{
+		if(a==1){
+		printf("컴퓨터:%s\n비겼습니다, 다시 해주세요", p1.n) ;
+		d++;
+		}
+		else if(a==3){
+		printf("컴퓨터:%s\n졌습니다, 다음엔 꼭 승리하시길...", p1.m);
+		c++;
+		}
+		else if(a==2) {
+		printf("컴퓨터:%s\n이겼습니다, 축하합니다", p1.p);
+		b++;
+		}
+		else
+		{
+		printf("다시 입력해주세요");
+		}
+	}
+	else if(rand()%3<x)
+	{
+	    if(a==2){
+		printf("컴퓨터:%s\n비겼습니다, 다시 해주세요", p1.m);
+		d++;
+		}
+		else if(a==1){
+		printf("컴퓨터:%s\n졌습니다, 다음엔 꼭 승리하시길...", p1.n); 
+		c++;
+		}
+		else if(a==3){
+		printf("컴퓨터:%s\n이겼습니다, 축하합니다", p1.p);
+		b++;
+		}
+		else
+		{
+		printf("다시 입력해주세요");
+		}
+	}
+	else if(rand()%3<y)
+	{
+	    if(a==3){
+	    printf("컴퓨터:%s\n비겼습니다, 다시 해주세요", p1.p); 
+	    d++;
+		}
+		else if(a==2){
+		printf("컴퓨터:%s\n졌습니다, 다음엔 꼭 승리하시길...", p1.m); 
+		c++;
+		}
+		else if(a==1){
+		printf("컴퓨터:%s\n이겼습니다, 축하합니다", p1.n);
+		b++;
+		}
+		else
+		{
+		printf("다시 입력해주세요");
+		}
+    }
+    printf("\n%d승 %d패  %d무\n\n", b,c,d);
+    if(i==5){
+    	if(b>c){
+    		printf("당신이 최종 승리 하셨습니다\nWIN");
+		}
+		else if(b<c){
+			printf("당신이 최종 패배하셨네요\nLOSE");
+		}
+		else if(b==c){
+			printf("컴퓨터와 비기셨네요\nSAME");
+		}	
+	}
+}
+	return 0;
+} 
